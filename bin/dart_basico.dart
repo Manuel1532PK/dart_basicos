@@ -1,7 +1,24 @@
 import 'dart:io';
+import 'package:dart_basico/IceCream.dart';
 
 void main(List<String> arguments) {
-  listFunction();
+  nullability();
+
+  /*var chocolate = IceCream();
+  var test = IceCream();
+  chocolate.flavor = 'Chocolate';
+  chocolate.size = "small";
+
+  test.price = 500;
+  test.charge();
+  chocolate.charge();
+  */
+  //exercise7function();
+  //exercise6function();
+  //listasTest();
+  //mapTest();
+  //setTest();
+  //mapsExplame();
   //inputfunction(6, 6);
   //print("el resultado es ${outputfunction()}");
 
@@ -252,6 +269,141 @@ void listFunction() {
 
 /*
 +----------------------------------------+ 
+|                SETS                    |
++----------------------------------------+
+*/
+//Los Sets evitan que hallan palabras duplicadas
+
+void setExplame() {
+  Set<String> names = {"Manuel", "Jose"};
+  names.add("Rivera");
+  names.add("Guzman");
+  //names.clear();
+  //names.removeAll(names);
+  /*
+  bool result = names.contains("Manuel");
+  if (result){
+    print("El nombre existe");
+  }else{
+    print("El nombre no existe");
+  }
+  */
+  //Esta es lo mismo que el de arriba
+  if (names.contains("Aris")) {
+    //Si pongo un valor que si esta en mi lista me va leer que existe
+    print("El nombre existe");
+  } else {
+    print("El nombre no existe");
+  }
+  print(names.length);
+
+  List<String> newNames = ["mANUEL", "MANUEL", "Pedro"];
+  Set<String> newNameSet = Set.from(newNames);
+  print(newNameSet);
+}
+
+/*
++----------------------------------------+ 
+|                MAPS                    |
++----------------------------------------+
+*/
+
+void mapsExplame() {
+  Map<String, int> people = {
+    //Son claves que si son tipo string o int
+    "Manuel": 25, "Jose": 30, "Pedro": 35,
+  };
+  people["Manuel"] = 76;
+  people.addAll({
+    "Roberto": 44,
+    "Miguel": 28,
+  }); //Agregar igual que en las listas
+  people["pikachu"] = 76;
+  people.remove("pikachu");
+
+  people.containsKey("Manuel");
+  people.containsValue(30);
+
+  people.length;
+  //people.clear(); Limpiar todo
+
+  print(people);
+  //print(people["Manuel"]);
+}
+
+/*
++----------------------------------------+ 
+|                Bucles                  |
++----------------------------------------+
+*/
+
+void listasTest() {
+  List<int> numeros = [2, 4, 6, 8, 10, 12];
+  /*for (var i = 0; i < numeros.length; i++) {
+    //En caso que necesite la posicion usar este metodo
+    print("Con el for basico tenemos: ${numeros[i]}");
+  }*/
+  for (var Cont in numeros) {
+    //En caso que no necesite la posicion usar este metodo
+    print("Con el for numero 2 tengo: $Cont");
+  }
+
+  numeros.forEach((item) {
+    print("El numero es $item");
+  }); //Este metodo es igual que el for pero con un callback
+
+  //numeros.forEach(print);
+}
+
+void setTest() {
+  Set<int> numeros = {1, 3, 5, 7, 9, 11};
+  for (var element in numeros) {
+    print("el Set: $element");
+  }
+  numeros.forEach(print);
+}
+
+void mapTest() {
+  Map<String, int> numeros = {
+    "NumeroSuerte": 8,
+    "NumeroMalo": 5,
+    "NumeroFav": 13,
+  };
+
+  //Uso de in estan Value para solo Int, keys solo string y si quiero todo entries
+  for (var Element in numeros.entries) {
+    print("La clave es ${Element.key} y el valor es ${Element.value}");
+  }
+  numeros.forEach((key, value) {
+    print("La clave es $key y el valor es $value");
+  });
+}
+
+/*
++----------------------------------------+ 
+|              Nulabilidad               |
++----------------------------------------+
+*/
+
+void nullability() {
+  String? name = "Aris";
+  name = "";
+  name = null;
+  String example2 =
+      name ?? "Invitado"; //Esto se hace para asignar valores a objetos nulos
+
+  example2 ??= "Pepe";
+
+  if (name != null) {
+    print("hola $name");
+  }
+
+  int? example = 13;
+  example = null;
+}
+
+/*
++----------------------------------------+ 
 |             Ejercicios                 |
 +----------------------------------------+
 */
@@ -329,5 +481,64 @@ void exercise5function() {
       print("El numero es Diciembre");
     default:
       print("El numero no es un mes");
+  }
+}
+
+//Ejercicio #3
+void exercise6function() {
+  var example = [1, 2, 3, 4, 5, 6];
+
+  int sumaPares = 0;
+  int sumaImpares = 0;
+
+  for (var Numeros in example) {
+    if (Numeros % 2 != 0) {
+      sumaImpares += Numeros;
+    }
+  }
+
+  for (var Numeros in example) {
+    if (Numeros % 2 == 0) {
+      sumaPares += Numeros;
+    }
+  }
+  print("suman para numero Pares: $sumaPares");
+  print("suman para numero Impares: $sumaImpares");
+}
+
+void exercise7function() {
+  List<String> words = [
+    "dart",
+    "flutter",
+    "dart",
+    "codigo",
+    "flutter",
+    "Movil",
+  ];
+  Set<String> result = {};
+  for (var word in words) {
+    result.add(word);
+  }
+  print(result);
+}
+
+void exercise8function() {
+  List<String> words = [
+    "dart",
+    "flutter",
+    "dart",
+    "codigo",
+    "flutter",
+    "Movil",
+    "dart",
+  ];
+  Map<String, int> result = {};
+
+  for (var element in words) {
+    if (result.containsKey(element)) {
+      result[element] = result[element]! + 1;
+    } else {
+      result[element] = 1;
+    }
   }
 }
